@@ -1,10 +1,135 @@
-body { font-family: Arial, sans-serif; background: #fafafa; padding: 20px;}
-.chat-app { max-width: 720px; margin: 0 auto; }
-.chat-window { min-height: 300px; border: 1px solid #ddd; padding: 12px; background: #fff; margin-bottom: 8px; overflow:auto; }
-.msg { padding: 6px; margin:6px 0; border-radius: 6px; }
-.msg.user { background: #e8f0ff; text-align:right; }
-.msg.assistant { background: #f1f1f1; text-align:left; }
-.msg.system { background: #fff3cd; text-align:left; }
-.controls { display:flex; gap:8px; }
-.controls input { flex:1; padding:8px; }
-.controls button { padding:8px 12px; }
+// style.scss
+
+$primary: #4f46e5;      // Indigo
+$secondary: #06b6d4;    // Cyan
+$bg: #f9fafb;
+$user-bg: #d1fae5;
+$assistant-bg: #eef2ff;
+$system-bg: #fef9c3;
+$text-dark: #1f2937;
+
+.chat-app {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  font-family: 'Inter', sans-serif;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+
+  .chat-window {
+    background: $bg;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 360px;
+    max-height: 500px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    scroll-behavior: smooth;
+
+    > div {
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      width: fit-content;
+      max-width: 75%;
+      animation: fadeIn 0.3s ease-in-out;
+      line-height: 1.45;
+      color: $text-dark;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+      b {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+    }
+
+    // Specific roles
+    > div:has(b:contains("user")) {
+      background: $user-bg;
+      margin-left: auto;
+      border-right: 4px solid $secondary;
+    }
+
+    > div:has(b:contains("assistant")) {
+      background: $assistant-bg;
+      border-left: 4px solid $primary;
+    }
+
+    > div:has(b:contains("system")) {
+      background: $system-bg;
+      font-style: italic;
+      opacity: 0.85;
+    }
+  }
+
+  .controls {
+    display: flex;
+    gap: 10px;
+
+    input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: box-shadow 0.2s;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.25);
+      }
+    }
+
+    button {
+      padding: 10px 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: linear-gradient(90deg, $primary, $secondary);
+      color: white;
+      transition: opacity 0.2s, transform 0.1s;
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .loading {
+    margin-top: 8px;
+    font-size: 14px;
+    color: $primary;
+    animation: pulse 1.5s infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
