@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { API_BASE } from './config';
+import './style.scss';
+
 
 export default function App(){
   const [sessionId, setSessionId] = useState(null);
