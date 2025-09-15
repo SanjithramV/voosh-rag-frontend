@@ -1,0 +1,10 @@
+body { font-family: Arial, sans-serif; background: #fafafa; padding: 20px;}
+.chat-app { max-width: 720px; margin: 0 auto; }
+.chat-window { min-height: 300px; border: 1px solid #ddd; padding: 12px; background: #fff; margin-bottom: 8px; overflow:auto; }
+.msg { padding: 6px; margin:6px 0; border-radius: 6px; }
+.msg.user { background: #e8f0ff; text-align:right; }
+.msg.assistant { background: #f1f1f1; text-align:left; }
+.msg.system { background: #fff3cd; text-align:left; }
+.controls { display:flex; gap:8px; }
+.controls input { flex:1; padding:8px; }
+.controls button { padding:8px 12px; }
