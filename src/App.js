@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { API_BASE } from './config';
-import './style.scss';
+import './styles.scss';
 
 
 export default function App(){
